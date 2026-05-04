@@ -4,7 +4,7 @@ import { ParkingSlot, SlotStatus } from '../app/models/parking.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ParkingServiceTsService {
+export class ParkingService{
 
   private parkingSlots=signal<ParkingSlot[]>(this.generateParkingSlots());
 
