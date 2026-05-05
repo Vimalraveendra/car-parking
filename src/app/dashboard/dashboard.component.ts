@@ -9,10 +9,11 @@ import { ParkingService } from '../../services/parking.service.ts.service';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  
+
   private parkingService= inject(ParkingService)
 
   parkingStatus= this.parkingService.parkingSlots$
 
+  parkingFloors = this.parkingService.floors
 
 }
