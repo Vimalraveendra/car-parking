@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ParkingService } from '../../services/parking.service.ts.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+  
+  private parkingService= inject(ParkingService)
+
+  parkingStatus= this.parkingService.parkingSlots$
+
 
 }
