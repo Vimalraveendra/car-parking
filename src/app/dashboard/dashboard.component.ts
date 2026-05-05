@@ -17,4 +17,9 @@ export class DashboardComponent {
 
   parkingFloors = this.parkingService.floors
 
+  activeBookings() {
+    return this.parkingService.getActiveBookings();
+  }
+
+
 }
