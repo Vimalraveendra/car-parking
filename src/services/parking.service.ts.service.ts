@@ -51,7 +51,6 @@ export class ParkingService{
    readonly parkingStats = computed<ParkingStats>(() => {
     const slots = this.parkingSlots();
     const bookings = this.bookings();
-    const activeBookings = bookings.filter(b => b.status === 'active');
     const revenue = bookings
       .filter(b => b.status === 'completed')
       .reduce((sum, b) => sum + (b.totalCost ?? 0), 0);
@@ -83,6 +82,10 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
       slots: slots.filter(s => s.floor === f),
     }));
   });
+
+  getActiveBookings():Booking[]{
+      return this.bookings().filter(b => b.status === 'active');
+  }
 
 }
  
