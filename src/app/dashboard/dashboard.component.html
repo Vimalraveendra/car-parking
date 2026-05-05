@@ -9,3 +9,41 @@
             <a routerLink="/parking" class="btn btn--primary">Manage Parking</a>
         </div>
     </div>
+
+    <!-- Stats grid -->
+    <div class="stats-grid">
+        <div class="stat-card stat-card--green">
+            <div class="stat-card__icon">🟢</div>
+            <div class="stat-card__val">{{ parkingStatus().available }}</div>
+            <div class="stat-card__label">Available</div>
+            <div class="stat-card__bar">
+                <div class="stat-card__bar-fill stat-card__bar-fill--green"
+                    [style.width.%]="(parkingStatus().available / parkingStatus().total) * 100"></div>
+            </div>
+        </div>
+        <div class="stat-card stat-card--red">
+            <div class="stat-card__icon">🔴</div>
+            <div class="stat-card__val">{{ parkingStatus().occupied }}</div>
+            <div class="stat-card__label">Occupied</div>
+            <div class="stat-card__bar">
+                <div class="stat-card__bar-fill stat-card__bar-fill--red"
+                    [style.width.%]="(parkingStatus().occupied / parkingStatus().total) * 100"></div>
+            </div>
+        </div>
+        <div class="stat-card stat-card--yellow">
+            <div class="stat-card__icon">🟡</div>
+            <div class="stat-card__val">{{ parkingStatus().reserved }}</div>
+            <div class="stat-card__label">Reserved</div>
+            <div class="stat-card__bar">
+                <div class="stat-card__bar-fill stat-card__bar-fill--yellow"
+                    [style.width.%]="(parkingStatus().reserved / parkingStatus().total) * 100"></div>
+            </div>
+        </div>
+        <div class="stat-card stat-card--accent">
+            <div class="stat-card__icon">💰</div>
+            <div class="stat-card__val">{{ parkingStatus().revenue | currency }}</div>
+            <div class="stat-card__label">Revenue today</div>
+            <div class="stat-card__sub">{{ parkingStatus().occupancyRate }}% occupancy</div>
+        </div>
+    </div>
+</div>
