@@ -1,5 +1,5 @@
 import { Injectable, signal ,computed} from '@angular/core';
-import { Booking, ParkingSlot, ParkingStats, SlotStatus } from '../app/models/parking.model';
+import { Booking, ParkingSlot, ParkingStats, SlotStatus ,Floor} from '../app/models/parking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +72,16 @@ for (let s of slots){
 }
 stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
     return stats;
+  });
+
+    readonly floors = computed<Floor[]>(() => {
+    const slots = this.parkingSlots();
+    const floorNums= [0, 1, 2];
+    return floorNums.map(f => ({
+      number: f,
+      label: f === 0 ? 'Ground Floor' : `Floor ${f}`,
+      slots: slots.filter(s => s.floor === f),
+    }));
   });
 
 }
