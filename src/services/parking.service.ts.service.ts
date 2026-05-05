@@ -1,5 +1,5 @@
-import { Injectable, signal } from '@angular/core';
-import { ParkingSlot, SlotStatus } from '../app/models/parking.model';
+import { Injectable, signal ,computed} from '@angular/core';
+import { Booking, ParkingSlot, ParkingStats, SlotStatus } from '../app/models/parking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,11 @@ import { ParkingSlot, SlotStatus } from '../app/models/parking.model';
 export class ParkingService{
 
   private parkingSlots=signal<ParkingSlot[]>(this.generateParkingSlots());
+  private bookings=signal<Booking[]>([])
 
 
   readonly parkingSlots$=this.parkingSlots.asReadonly();
+  readonly bookings$=this.bookings.asReadonly();
 
 
   private generateParkingSlots(): ParkingSlot[] {
@@ -46,4 +48,31 @@ export class ParkingService{
     return slots;
   }
 
+   readonly parkingStats = computed<ParkingStats>(() => {
+    const slots = this.parkingSlots();
+    const bookings = this.bookings();
+    const activeBookings = bookings.filter(b => b.status === 'active');
+    const revenue = bookings
+      .filter(b => b.status === 'completed')
+      .reduce((sum, b) => sum + (b.totalCost ?? 0), 0);
+   const stats:ParkingStats = {
+      total: slots.length,
+      available: 0,
+      occupied: 0,
+      reserved: 0,
+      maintenance: 0,
+      revenue,
+     occupancyRate:0
 }
+
+for (let s of slots){
+  if(stats[s.status]!==undefined){
+    stats[s.status]++
+  }
+}
+stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
+    return stats;
+  });
+
+}
+ 
