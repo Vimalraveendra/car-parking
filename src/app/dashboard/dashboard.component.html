@@ -46,4 +46,44 @@
             <div class="stat-card__sub">{{ parkingStatus().occupancyRate }}% occupancy</div>
         </div>
     </div>
+
+    <div class="dashboard-grid">
+        <!-- Occupancy ring -->
+        <div class="card occupancy-card">
+            <div class="card-header">
+                <div class="card-title">Occupancy Rate</div>
+            </div>
+            <div class="occupancy-ring-wrap">
+                <svg viewBox="0 0 120 120" class="occupancy-ring">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="10" />
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="10"
+                        attr.stroke-dasharray="[{{ parkingStatus().occupancyRate * 3.14 }} 314]"
+                        stroke-dashoffset="78.5" stroke-linecap="round" transform="rotate(-90 60 60)" />
+                </svg>
+                <div class="occupancy-label">
+                    <div class="occupancy-pct">{{ parkingStatus().occupancyRate }}%</div>
+                    <div class="occupancy-sub">occupied</div>
+                </div>
+            </div>
+            <div class="occupancy-legend">
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--green)"></span>
+                    Available: {{ parkingStatus().available }}
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--red)"></span>
+                    Occupied: {{ parkingStatus().occupied }}
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--yellow)"></span>
+                    Reserved: {{ parkingStatus().reserved }}
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--text-hint)"></span>
+                    Maintenance: {{ parkingStatus().maintenance }}
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
