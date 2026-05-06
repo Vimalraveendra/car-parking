@@ -21,5 +21,12 @@ export class DashboardComponent {
     return this.parkingService.getActiveBookings();
   }
 
+    getVehicleIcon(type: string): string {
+    const icons: Record<string, string> = {
+      car: '🚗', motorcycle: '🏍️', van: '🚐', ev: '⚡'
+    };
+    return icons[type] ?? '🚗';
+  }
+
 
 }
