@@ -17,9 +17,7 @@ export class DashboardComponent {
 
   parkingFloors = this.parkingService.floors
 
-  activeBookings() {
-    return this.parkingService.getActiveBookings();
-  }
+  activeBookings = this.parkingService.activeBookings;
 
     getVehicleIcon(type: string): string {
     const icons: Record<string, string> = {

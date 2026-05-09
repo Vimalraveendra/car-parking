@@ -83,9 +83,7 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
     }));
   });
 
-  getActiveBookings():Booking[]{
-      return this.bookings().filter(b => b.status === 'active');
-  }
-
+  readonly activeBookings =computed(()=>this.bookings().filter(b => b.status === 'active'));
+ 
 }
  
