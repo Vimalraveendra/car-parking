@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ParkingService } from '../../services/parking.service.ts.service';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone:true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe,DatePipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

@@ -85,5 +85,31 @@
             </div>
         </div>
 
+        <!-- Active bookings -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Active Bookings</div>
+                <a routerLink="/tickets" class="btn btn--sm">View all</a>
+            </div>
+            @if (activeBookings().length === 0) {
+            <div class="empty-state">No active bookings</div>
+            }
+            @for (booking of activeBookings().slice(0, 6); track booking.id) {
+            <div class="booking-row">
+                <div class="booking-row__vehicle">
+                    <div class="vehicle-icon">{{ getVehicleIcon(booking.vehicleType) }}</div>
+                    <div>
+                        <div class="booking-row__plate">{{ booking.vehiclePlate }}</div>
+                        <div class="booking-row__owner">{{ booking.ownerName }}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="badge badge--accent">Slot {{ booking.slotNumber }}</div>
+                    <div class="booking-row__time">{{ booking.startTime | date:'HH:mm' }}</div>
+                </div>
+            </div>
+            }
+        </div>
+
     </div>
 </div>
