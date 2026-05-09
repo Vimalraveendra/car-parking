@@ -164,3 +164,36 @@
         border-radius: 50%; 
         flex-shrink: 0; 
     }
+
+    .booking-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .booking-row:last-child { 
+        border-bottom: none; 
+    }
+    .booking-row__vehicle { 
+        display: flex; 
+        align-items: center; 
+        gap: 10px; 
+    }
+    .vehicle-icon { 
+        font-size: 20px; 
+    }
+    .booking-row__plate { 
+        font-size: 13px; 
+        font-weight: 600; 
+    }
+    .booking-row__owner { 
+        font-size: 11px; 
+        color: var(--text-secondary); 
+    }
+    .booking-row__time { 
+        font-size: 11px; 
+        color: var(--text-hint); 
+        text-align: right; 
+        margin-top: 4px; 
+    }
