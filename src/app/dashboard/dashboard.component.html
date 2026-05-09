@@ -111,5 +111,25 @@
             }
         </div>
 
+        <!-- Floor summary -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">By Floor</div>
+            </div>
+            @for (floor of parkingFloors(); track floor.number) {
+            <div class="floor-row">
+                <div class="floor-row__label">{{ floor.label }}</div>
+                <div class="floor-row__bar">
+                    <div class="floor-row__bar-fill"
+                        [style.width.%]="(floor.slots | floorOccupied) / floor.slots.length * 100">
+                    </div>
+                </div>
+                <div class="floor-row__count">
+                    {{ floor.slots | floorOccupied }}/{{ floor.slots.length }}
+                </div>
+            </div>
+            }
+        </div>
+
     </div>
 </div>
