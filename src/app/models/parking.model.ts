@@ -43,3 +43,9 @@ export interface Floor {
   label: string;
   slots: ParkingSlot[];
 }
+
+export interface SelectOption {
+  id:number,
+  value: string;
+  label: string;
+}
