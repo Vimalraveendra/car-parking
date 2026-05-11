@@ -6,41 +6,8 @@
         </div>
         <div class="toolbar">
             <input class="search-input" type="text" placeholder="Search by plate..." />
-            <div class="filter-select">
-                <div class="dropdown">
-                    <button class="dropdown__trigger">
-                        <span>All slots</span>
-                        <span class="dropdown__arrow">⌄</span>
-                    </button>
-
-                    <ul class="dropdown__menu">
-                        <li value="all">All slots</li>
-                        <li value="available">Available</li>
-                        <li value="occupied">Occupied</li>
-                        <li value="reserved">Reserved</li>
-                        <li value="maintenance">Maintenance</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="filter-select">
-                <div class="dropdown">
-                    <button class="dropdown__trigger">
-                        <span>All types</span>
-                        <span class="dropdown__arrow">⌄</span>
-                    </button>
-
-                    <ul class="dropdown__menu">
-                        <li value="all">All types</li>
-                        <li value="standard">Standard</li>
-                        <li value="compact">Compact</li>
-                        <li value="disabled">Disabled</li>
-                        <li value="ev">EV</li>
-                    </ul>
-                </div>
-
-            </div>
+            <app-custom-select [options]="optionsData" label="All Slots" />
+            <app-custom-select [options]="optionsType" label="All Types" />
         </div>
     </div>
 
