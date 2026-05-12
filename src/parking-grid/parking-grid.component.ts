@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CustomSelectComponent } from '../shared/components/custom-select/custom-select.component';
 import { PARKING_SLOTS, PARKING_TYPES } from '../shared/data/parking-categories';
 import { ParkingService } from '../services/parking.service';
+import { ParkingSlot } from '../app/models/parking.model';
 
 @Component({
   selector: 'app-parking-grid',
@@ -21,6 +22,8 @@ export class ParkingGridComponent {
   sections=this.parkingService.sections$;
   filterStatus = signal('all');
   filterType = signal('all');
+  selectedSlot = signal<ParkingSlot | null>(null);
+  actionSlot = signal<ParkingSlot | null>(null);
 
   setParkingFloor(floorNumber: number) { this.activeParkingFloor.set(floorNumber); }
 
@@ -37,4 +40,25 @@ export class ParkingGridComponent {
  getVehicleIcon(type: string){
      return this.parkingService.getIcon(type)
    }
+    slotClass(slot: ParkingSlot): string {
+    let cls = `slot slot--${slot.status}`;
+    if (slot.type === 'ev' && slot.status === 'available') cls += ' slot--ev';
+    return cls;
+  }
+
+  slotTooltip(slot: ParkingSlot): string {
+    if (slot.status === 'occupied' && slot.booking) {
+      return `${slot.booking.vehiclePlate} — ${slot.booking.ownerName}`;
+    }
+    return `${slot.number} · ${slot.type} · $${slot.pricePerHour}/hr`;
+  }
+
+   onSlotClick(slot: ParkingSlot): void {
+    if (slot.status === 'available') {
+      this.selectedSlot.set(slot);
+      this.actionSlot.set(null);
+    } else if (slot.status === 'occupied' || slot.status === 'maintenance') {
+      this.actionSlot.set(slot);
+    }
+  }
 }
