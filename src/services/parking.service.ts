@@ -88,7 +88,7 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
   readonly activeBookings =computed(()=>this.bookings().filter(b => b.status === 'active'));
    getIcon(type: string): string {
     const icons: Record<string, string> = {
-      car: '🚗', motorcycle: '🏍️', van: '🚐', ev: '⚡'
+      standard: '🚗', compact: '🚙', disabled: '♿', ev: '⚡'
     };
     return icons[type] ?? '🚗';
   }
