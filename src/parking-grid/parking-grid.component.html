@@ -36,10 +36,40 @@
             (click)="setParkingFloor(floor.number)">
             {{ floor.label }}
             <span class="floor-tab__count">
-                {{ parkingFloorAvailable(floor.number) }}/{{ floor.slots.length }}
+                {{ getAvailableParkingSlots(floor.number) }}/{{ floor.slots.length }}
             </span>
         </button>
         }
     </div>
+
+    <!-- Grid -->
+    @for (floor of parkingFloors(); track floor.number) {
+    @if (activeParkingFloor() === floor.number) {
+
+    <div class="floor-view">
+        @for (section of sections(); track section) {
+        <div class="section">
+            <div class="section__header">
+                <div class="section__label">Section {{ section }}</div>
+                <div class="section__count">
+                    {{ getAvailableSectionSlots(floor.number, section) }} available
+                </div>
+            </div>
+            <div class="slots-grid">
+                @for (slot of getFilteredSlots(floor.number, section); track slot.id) {
+                <div class="slot">
+                    <div class="slot__number">{{ slot.number }}</div>
+                    <div class="slot__type">{{ getVehicleIcon(slot.type) }}</div>
+                    @if (slot.status === 'occupied' && slot.booking) {
+                    <div class="slot__plate">{{ slot.booking.vehiclePlate }}</div>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+    }
+    }
 
 </div>
