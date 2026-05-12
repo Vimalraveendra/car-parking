@@ -18,14 +18,23 @@ export class ParkingGridComponent {
  activeParkingFloor=signal(0)
   optionsData=PARKING_SLOTS;
   optionsType=PARKING_TYPES;
+  sections=this.parkingService.sections$;
+  filterStatus = signal('all');
+  filterType = signal('all');
 
   setParkingFloor(floorNumber: number) { this.activeParkingFloor.set(floorNumber); }
 
   getAvailableParkingSlots(floorNumber: number)  {
     return this.parkingService.availableParkingSlots(floorNumber)
   }
-  
   getAvailableSectionSlots(floorNumber:number,section:string){
     return this.parkingService.availableSectionSlots(floorNumber,section)
   }
+
+  getFilteredSlots(floorNumber:number,section:string){
+    return this.parkingService.filteredSlots(floorNumber,section,this.filterStatus(),this.filterType())
+  }
+ getVehicleIcon(type: string){
+     return this.parkingService.getIcon(type)
+   }
 }

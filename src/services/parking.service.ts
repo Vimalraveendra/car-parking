@@ -98,8 +98,17 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
      filter(s=>s.status==="available").length??0;
   }
  
-  availableSectionSlots(floorNumber:number,section:string){
-     this.parkingSlots().filter(s=>s.floor===floorNumber && s.section===section && s.status==="available").length
+  availableSectionSlots(floorNumber:number,section:string):number{
+     return this.parkingSlots().filter(s=>s.floor===floorNumber && s.section===section && s.status==="available").length
+  }
+
+  filteredSlots(floorNumber: number, section: string,filterStatus:string,filterType:string): ParkingSlot[] {
+    return this.parkingSlots().filter(s => {
+      if (s.floor !== floorNumber || s.section !== section) return false;
+      if (filterStatus !== 'all' && s.status !== filterStatus) return false;
+      if (filterType !== 'all' && s.type !== filterType) return false;
+      return true;
+    });
   }
 }
  
