@@ -5,18 +5,20 @@ import { Booking, ParkingSlot, ParkingStats, SlotStatus ,Floor} from '../app/mod
   providedIn: 'root'
 })
 export class ParkingService{
-
+  private sections= signal<string[]> (['A', 'B', 'C', 'D']);
   private parkingSlots=signal<ParkingSlot[]>(this.generateParkingSlots());
   private bookings=signal<Booking[]>([])
 
 
+
   readonly parkingSlots$=this.parkingSlots.asReadonly();
   readonly bookings$=this.bookings.asReadonly();
+  readonly sections$= this.sections.asReadonly();
 
 
   private generateParkingSlots(): ParkingSlot[] {
     const slots: ParkingSlot[] = [];
-    const sections = ['A', 'B', 'C', 'D'];
+    const sections = this.sections();
     const slotsPerSection = 10;
     const floors = [0, 1, 2];
 
@@ -84,6 +86,16 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
   });
 
   readonly activeBookings =computed(()=>this.bookings().filter(b => b.status === 'active'));
- 
+   getIcon(type: string): string {
+    const icons: Record<string, string> = {
+      car: '🚗', motorcycle: '🏍️', van: '🚐', ev: '⚡'
+    };
+    return icons[type] ?? '🚗';
+  }
+
+  availableParkingSlots(floorNumber:number):number{
+    return this.floors().find(f=>f.number===floorNumber)?.slots.
+     filter(s=>s.status==="available").length??0;
+  }
 }
  
