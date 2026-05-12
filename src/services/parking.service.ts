@@ -97,5 +97,9 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
     return this.floors().find(f=>f.number===floorNumber)?.slots.
      filter(s=>s.status==="available").length??0;
   }
+ 
+  availableSectionSlots(floorNumber:number,section:string){
+     this.parkingSlots().filter(s=>s.floor===floorNumber && s.section===section && s.status==="available").length
+  }
 }
  
