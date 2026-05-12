@@ -33,7 +33,7 @@
     <div class="floor-tabs">
         @for (floor of parkingFloors(); track floor.number) {
         <button class="floor-tab" [class.floor-tab--active]="activeParkingFloor() === floor.number"
-            (click)="setFloor(floor.number)">
+            (click)="setParkingFloor(floor.number)">
             {{ floor.label }}
             <span class="floor-tab__count">
                 {{ parkingFloorAvailable(floor.number) }}/{{ floor.slots.length }}
