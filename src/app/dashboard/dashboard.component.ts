@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ParkingService } from '../../services/parking.service.ts.service';
+import { ParkingService } from '../../services/parking.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { FloorOccupiedPipe } from '../../pipes/floor-occupied.pipe';
 
@@ -20,12 +20,8 @@ export class DashboardComponent {
 
   activeBookings = this.parkingService.activeBookings;
 
-    getVehicleIcon(type: string): string {
-    const icons: Record<string, string> = {
-      car: '🚗', motorcycle: '🏍️', van: '🚐', ev: '⚡'
-    };
-    return icons[type] ?? '🚗';
-  }
-
-
+   getVehicleIcon(type: string){
+     return this.parkingService.getIcon(type)
+   }
+ 
 }
