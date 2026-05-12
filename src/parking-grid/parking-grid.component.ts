@@ -19,7 +19,7 @@ export class ParkingGridComponent {
   optionsData=PARKING_SLOTS;
   optionsType=PARKING_TYPES;
 
-   setFloor(floor: number) { this.activeParkingFloor.set(floor); }
+   setParkingFloor(floor: number) { this.activeParkingFloor.set(floor); }
 
     parkingFloorAvailable(floor: number): number {
     return this.parkingFloors().find(f => f.number === floor)?.slots
