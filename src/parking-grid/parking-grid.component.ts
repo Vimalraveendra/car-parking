@@ -25,4 +25,7 @@ export class ParkingGridComponent {
     return this.parkingService.availableParkingSlots(floorNumber)
   }
   
+  getAvailableSectionSlots(floorNumber:number,section:string){
+    return this.parkingService.availableSectionSlots(floorNumber,section)
+  }
 }
