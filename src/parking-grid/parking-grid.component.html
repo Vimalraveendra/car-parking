@@ -57,7 +57,7 @@
             </div>
             <div class="slots-grid">
                 @for (slot of getFilteredSlots(floor.number, section); track slot.id) {
-                <div class="slot">
+                <div class="slot" [class]="slotClass(slot)" [title]="slotTooltip(slot)" (click)="onSlotClick(slot)">
                     <div class="slot__number">{{ slot.number }}</div>
                     <div class="slot__type">{{ getVehicleIcon(slot.type) }}</div>
                     @if (slot.status === 'occupied' && slot.booking) {
