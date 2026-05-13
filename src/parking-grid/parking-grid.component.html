@@ -76,7 +76,7 @@
 
     <!-- Booking modal -->
     @if (selectedSlot()) {
-    <app-booking-modal [slot]="selectedSlot()!" (closed)="selectedSlot.set(null)" (booked)="onBooked()" />
+    <app-booking-modal [parkingSlot]="selectedSlot()!" (closed)="selectedSlot.set(null)" (booked)="onBooked()" />
     }
 
 </div>
