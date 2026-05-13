@@ -6,8 +6,10 @@
         </div>
         <div class="toolbar">
             <input class="search-input" type="text" placeholder="Search by plate..." />
-            <app-custom-select [options]="optionsData" label="All Slots" />
-            <app-custom-select [options]="optionsType" label="All Types" />
+            <app-custom-select [options]="optionsData" [label]="selectSlotOption().label"
+                (selectedOption)="setSelectedSlot($event.option)" />
+            <app-custom-select [options]="optionsType" [label]="selectSlotType().label"
+                (selectedOption)="setSelectedType($event.option)" />
         </div>
     </div>
     <!-- Legend -->

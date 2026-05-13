@@ -6,7 +6,7 @@
 
     <ul class="dropdown__menu">
         @for(option of options();track option.id){
-        <li [value]="option.value">{{option.label}}</li>
+        <li [value]="option.value" (click)="selectOption(option)">{{option.label}}</li>
         }
     </ul>
 </div>
