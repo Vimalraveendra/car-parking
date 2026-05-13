@@ -1,4 +1,4 @@
-import { Component,input,signal } from '@angular/core';
+import { Component,input,signal,output } from '@angular/core';
 import { SelectOption } from '../../../app/models/parking.model';
 
 @Component({
@@ -11,8 +11,13 @@ export class CustomSelectComponent {
 options=input<SelectOption[]>([])
 label=input<string>("")
 isOpen =signal(false);
+selectedOption=output<{option:SelectOption}>();
 
 toggleDropdown() {
   this.isOpen.set(!this.isOpen())
+}
+selectOption(option:SelectOption){
+  this.selectedOption.emit({option})
+ this.toggleDropdown();
 }
 }
