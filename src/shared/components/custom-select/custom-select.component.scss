@@ -1,6 +1,6 @@
   /* DROPDOWN */
     .dropdown {
-    padding: 4px 12px;
+    padding: 2px 12px;
     font-size: 13px;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -8,6 +8,8 @@
     color: var(--text-primary);
     outline: none;
     position: relative;
+    width:100%;
+    min-width: 140px;
     }
 
       .dropdown__menu {
@@ -34,7 +36,7 @@
 
       }
       .dropdown__trigger{
-          width: 110px;
+          width: 100%;
           font-size: 13px;
           text-align: left;
           border:transparent;
