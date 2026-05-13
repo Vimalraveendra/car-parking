@@ -9,7 +9,7 @@
                     ${{ slot?.pricePerHour }}/hr
                 </div>
             </div>
-            <button class="modal__close">✕</button>
+            <button class="modal__close" (click)="onClose()">✕</button>
         </div>
 
         <div class="modal__body">
@@ -51,12 +51,16 @@
                         <label class="form-label">Vehicle Plate *</label>
                         <input class="form-input" type="text" placeholder="ABC-1234" style="text-transform:uppercase" />
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Vehicle Type*</label>
+                        <app-custom-select [options]="optionsType" [label]="selectVehicleType().label" />
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="modal__footer">
-            <button class="btn">Cancel</button>
+            <button class="btn" (click)="onClose()">Cancel</button>
             <button class="btn btn--primary" [disabled]="submitting">
                 {{ submitting ? 'Booking...' : 'Confirm Booking' }}
             </button>

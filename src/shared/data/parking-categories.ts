@@ -15,3 +15,10 @@ export const PARKING_TYPES:SelectOption[] = [
   { id:204,value: 'disabled', label: 'Disabled' },
   { id:205,value: 'ev', label: 'EV' }
 ];
+
+export const VEHICLE_TYPES:SelectOption[] = [
+  { id:301,value: 'car', label: '🚗 Car' },
+  { id:302,value: 'motorcycle', label: '🏍️ Motorcycle' },
+  { id:303,value: 'van', label: '🚐 Van' },
+  { id:304,value: 'ev', label: '⚡ EV' },
+];
