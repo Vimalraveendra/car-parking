@@ -1,0 +1,68 @@
+@if(parkingSlot(); as slot){
+<div class="modal-backdrop">
+    <div class="modal">
+        <div class="modal__header">
+            <div>
+                <div class="modal__title">Book Slot {{ slot.number }}</div>
+                <div class="modal__sub">
+                    {{ slot.section }} Section · Floor {{ slot?.floor }} ·
+                    ${{ slot?.pricePerHour }}/hr
+                </div>
+            </div>
+            <button class="modal__close">✕</button>
+        </div>
+
+        <div class="modal__body">
+            <div class="slot-info">
+                <div class="slot-info__item">
+                    <span>Type</span>
+                    <span class="badge badge--blue">{{ slot.type }}</span>
+                </div>
+                <div class="slot-info__item">
+                    <span>Section</span>
+                    <span>{{ slot.section }}</span>
+                </div>
+                <div class="slot-info__item">
+                    <span>Floor</span>
+                    <span>{{ slot.floor === 0 ? 'Ground' : slot.floor }}</span>
+                </div>
+                <div class="slot-info__item">
+                    <span>Rate</span>
+                    <span class="rate">\${{ slot.pricePerHour }}/hour</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form" [formGroup]="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Owner Name *</label>
+                        <input class="form-input" type="text" placeholder="John Smith" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input class="form-input" type="tel" placeholder="+1 555 000 0000" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Vehicle Plate *</label>
+                        <input class="form-input" type="text" placeholder="ABC-1234" style="text-transform:uppercase" />
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal__footer">
+            <button class="btn">Cancel</button>
+            <button class="btn btn--primary" [disabled]="submitting">
+                {{ submitting ? 'Booking...' : 'Confirm Booking' }}
+            </button>
+        </div>
+    </div>
+</div>
+
+}
