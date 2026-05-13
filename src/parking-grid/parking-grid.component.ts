@@ -3,11 +3,12 @@ import { CustomSelectComponent } from '../shared/components/custom-select/custom
 import { PARKING_SLOTS, PARKING_TYPES } from '../shared/data/parking-categories';
 import { ParkingService } from '../services/parking.service';
 import { ParkingSlot, SelectOption } from '../app/models/parking.model';
+import { BookingModalComponent } from '../app/booking-modal/booking-modal.component';
 
 @Component({
   selector: 'app-parking-grid',
   standalone:true,
-  imports: [CustomSelectComponent],
+  imports: [CustomSelectComponent,BookingModalComponent],
   templateUrl: './parking-grid.component.html',
   styleUrl: './parking-grid.component.scss'
 })
@@ -68,5 +69,9 @@ export class ParkingGridComponent {
    setSelectedType(option:SelectOption){
      const {label,value}=option
      this.selectSlotType.set({label,value})
+  }
+
+  onBooked(): void {
+    this.selectedSlot.set(null);
   }
 }
