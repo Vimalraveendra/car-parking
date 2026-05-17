@@ -21,25 +21,24 @@ export class BookingModalComponent implements OnInit {
   booked=output<Booking>();
   optionsType=VEHICLE_TYPES;
   selectVehicleType=signal({label:'🚗 Car',value:'car'})
-  submitted = false;
   successMsg = '';
   errorMsg = '';
 
    bookingForm:FormGroup= new FormGroup({
-    name:new FormControl('',[Validators.required,Validators.minLength(3)]),
-    phone:new FormControl("",[Validators.required,Validators.minLength(14),Validators.maxLength(14)]),
+    ownerName:new FormControl('',[Validators.required,Validators.minLength(3)]),
+    ownerPhone:new FormControl("",[Validators.required,Validators.minLength(14),Validators.maxLength(14)]),
     vehiclePlate:new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(8)]),
   })
  
     ngOnInit(): void {
-   this.bookingForm.get("phone")?.valueChanges.subscribe(value=>{  
+   this.bookingForm.get("ownerPhone")?.valueChanges.subscribe(value=>{  
       if(!value) return;
        // only numbers
     let cleaned = value.replace(/\D/g, '');  
 
     let formatted = cleaned.match(/^.{0,2}|.{1,3}/g)?.join(' ')||" "
  if (formatted!== value) {
-        this.bookingForm.get("phone")?.setValue(formatted, {
+        this.bookingForm.get("ownerPhone")?.setValue(formatted, {
           emitEvent: false
         });
       }
@@ -54,11 +53,8 @@ export class BookingModalComponent implements OnInit {
   let part1 = cleaned.slice(0, 3).replace(/[^a-zA-Z]/g, '');
    // rest must be numbers only
   let part2 = cleaned.slice(3).replace(/[^0-9]/g, '');
-    let formatted = part1;
+    let formatted = part1 + part2;
 
-  if (part2.length > 0) {
-    formatted += '-' + part2;
-  }
  if (formatted!== value) {
         this.bookingForm.get("vehiclePlate")?.setValue(formatted, {
           emitEvent: false
@@ -73,7 +69,7 @@ export class BookingModalComponent implements OnInit {
  
   isFieldInvalid(controlName:string):boolean{
     const controlForm= this.bookingForm.get(controlName)
-     return !!( controlForm?.invalid && (controlForm?.dirty || controlForm?.touched||this.submitted))
+     return !!( controlForm?.invalid && (controlForm?.dirty || controlForm?.touched||this.submitting))
     
   }
 
@@ -86,15 +82,17 @@ export class BookingModalComponent implements OnInit {
      this.bookingForm.markAllAsTouched();
     return;
   }
-  this.submitted=true;
+  this.submitting=true;
   this.errorMsg="";
   setTimeout(()=>{
     try{
       const slot = this.parkingSlot()&& this.parkingSlot();
       if(slot){
+        const {ownerPhone}=this.bookingForm.value;
         const booking=  this.parkingService.bookParkingSlot(slot.id,{
            ...this.bookingForm.value,
-           vehiclePlate: this.selectVehicleType(),
+           ownerPhone:ownerPhone.replace(/\D/g,""),
+           vehicleType: this.selectVehicleType().value
         })
          this.successMsg = `Slot ${slot.number} booked successfully!`;
         this.booked.emit(booking);
