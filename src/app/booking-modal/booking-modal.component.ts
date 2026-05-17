@@ -88,10 +88,11 @@ export class BookingModalComponent implements OnInit {
     try{
       const slot = this.parkingSlot()&& this.parkingSlot();
       if(slot){
-        const {ownerPhone}=this.bookingForm.value;
+        const {ownerPhone,vehiclePlate}=this.bookingForm.value;
         const booking=  this.parkingService.bookParkingSlot(slot.id,{
            ...this.bookingForm.value,
            ownerPhone:ownerPhone.replace(/\D/g,""),
+           vehiclePlate:vehiclePlate.toUpperCase(),
            vehicleType: this.selectVehicleType().value
         })
          this.successMsg = `Slot ${slot.number} booked successfully!`;

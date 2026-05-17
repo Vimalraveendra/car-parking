@@ -69,6 +69,12 @@
                     </div>
                 </div>
             </div>
+            @if (successMsg) {
+            <div class="alert alert--success">{{ successMsg }}</div>
+            }
+            @if (errorMsg) {
+            <div class="alert alert--error">{{ errorMsg }}</div>
+            }
         </div>
 
         <div class="modal__footer">
