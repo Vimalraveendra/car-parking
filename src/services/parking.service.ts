@@ -110,5 +110,30 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
       return true;
     });
   }
+
+   private updateParkingSlot(slotId: string, changes: Partial<ParkingSlot>): void {
+    this.parkingSlots.update(slots =>
+      slots.map(s => s.id === slotId ? { ...s, ...changes } : s)
+    );
+  }
+
+   bookParkingSlot(slotId: string, data: Omit<Booking, 'id' | 'slotId' | 'slotNumber' | 'startTime' | 'status'>): Booking {
+    const slot = this.parkingSlots().find(s => s.id === slotId);
+    if (!slot) throw new Error('Slot not found');
+    if (slot.status !== 'available') throw new Error('Slot not available');
+
+    const booking: Booking = {
+      id: `BK${Date.now()}`,
+      slotId,
+      slotNumber: slot.number,
+      startTime: new Date(),
+      status: 'active',
+      ...data,
+    };
+
+    this.bookings.update(b => [...b, booking]);
+    this.updateParkingSlot(slotId, { status: 'occupied', booking });
+    return booking;
+  }
 }
  
