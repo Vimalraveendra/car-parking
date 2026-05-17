@@ -15,13 +15,15 @@ import { VEHICLE_TYPES } from '../../shared/data/parking-categories';
 export class BookingModalComponent implements OnInit {
 
   private parkingService= inject(ParkingService);
-  parkingSlot=input<ParkingSlot|null>(null);
-   submitting = false;
-   closed =output<void>();
-   booked=output<Booking>();
+  parkingSlot=input<ParkingSlot|undefined>(undefined);
+  submitting = false;
+  closed =output<void>();
+  booked=output<Booking>();
   optionsType=VEHICLE_TYPES;
   selectVehicleType=signal({label:'🚗 Car',value:'car'})
-    submitted = false;
+  submitted = false;
+  successMsg = '';
+  errorMsg = '';
 
    bookingForm:FormGroup= new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -81,12 +83,29 @@ export class BookingModalComponent implements OnInit {
   }
   onSubmit(){
   if(this.bookingForm.invalid){
-    console.log("Invalid Form")
      this.bookingForm.markAllAsTouched();
     return;
   }
-  console.log(this.bookingForm)
   this.submitted=true;
+  this.errorMsg="";
+  setTimeout(()=>{
+    try{
+      const slot = this.parkingSlot()&& this.parkingSlot();
+      if(slot){
+        const booking=  this.parkingService.bookParkingSlot(slot.id,{
+           ...this.bookingForm.value,
+           vehiclePlate: this.selectVehicleType(),
+        })
+         this.successMsg = `Slot ${slot.number} booked successfully!`;
+        this.booked.emit(booking);
+       setTimeout(() => this.onClose(), 1200);
+      }
+    }catch (e: any) {
+        this.errorMsg = e.message ?? 'Booking failed';
+      } finally {
+        this.submitting = false;
+      }
+  },500)
 }
 
 }
