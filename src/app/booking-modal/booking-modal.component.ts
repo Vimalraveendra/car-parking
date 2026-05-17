@@ -1,7 +1,7 @@
 import { Component, inject ,input, OnInit, output, signal} from '@angular/core';
 import { FormGroup,FormControl,Validators ,ReactiveFormsModule, MaxLengthValidator, FormControlName} from '@angular/forms';
 import { ParkingService } from '../../services/parking.service';
-import { Booking, ParkingSlot } from '../models/parking.model';
+import { Booking, ParkingSlot, SelectOption } from '../models/parking.model';
 import { CustomSelectComponent } from '../../shared/components/custom-select/custom-select.component';
 import { VEHICLE_TYPES } from '../../shared/data/parking-categories';
 
@@ -21,12 +21,12 @@ export class BookingModalComponent implements OnInit {
    booked=output<Booking>();
   optionsType=VEHICLE_TYPES;
   selectVehicleType=signal({label:'🚗 Car',value:'car'})
+    submitted = false;
 
    bookingForm:FormGroup= new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(3)]),
     phone:new FormControl("",[Validators.required,Validators.minLength(14),Validators.maxLength(14)]),
     vehiclePlate:new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(8)]),
-    vehicleType:new FormControl(this.selectVehicleType().label,[Validators.required])
   })
  
     ngOnInit(): void {
@@ -69,14 +69,24 @@ export class BookingModalComponent implements OnInit {
     this.closed.emit();
   }
  
+  isFieldInvalid(controlName:string):boolean{
+    const controlForm= this.bookingForm.get(controlName)
+     return !!( controlForm?.invalid && (controlForm?.dirty || controlForm?.touched||this.submitted))
+    
+  }
 
+  setSelectedVehicleType(option:SelectOption){
+     const {label,value}=option
+     this.selectVehicleType.set({label,value})
+  }
   onSubmit(){
   if(this.bookingForm.invalid){
     console.log("Invalid Form")
+     this.bookingForm.markAllAsTouched();
     return;
   }
   console.log(this.bookingForm)
-
+  this.submitted=true;
 }
 
 }
