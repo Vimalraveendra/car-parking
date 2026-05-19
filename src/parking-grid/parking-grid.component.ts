@@ -74,4 +74,14 @@ export class ParkingGridComponent {
   onBooked(): void {
     this.selectedSlot.set(null);
   }
+
+   checkOut(bookingId: string): void {
+    this.parkingService.checkOut(bookingId);
+    this.actionSlot.set(null);
+  }
+
+  toggleMaintenance(slotId: string): void {
+    this.parkingService.toggleMaintenance(slotId);
+    this.actionSlot.set(null);
+  }
 }
