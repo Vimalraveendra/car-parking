@@ -79,4 +79,42 @@
     <app-booking-modal [parkingSlot]="selectedSlot()!" (closed)="selectedSlot.set(null)" (booked)="onBooked()" />
     }
 
+
+    <!-- Slot action panel -->
+    @if (actionSlot(); as slot) {
+    <div class="action-panel">
+        <div class="action-panel__header">
+            <div class="action-panel__title">Slot {{ slot.number }}</div>
+            <button (click)="actionSlot.set(null)">✕</button>
+        </div>
+        <div class="action-panel__body">
+            @if (slot.status === 'occupied' && slot.booking) {
+            <div class="action-info">
+                <div class="action-info__row">
+                    <span>Owner</span><strong>{{ slot.booking!.ownerName }}</strong>
+                </div>
+                <div class="action-info__row">
+                    <span>Plate</span><strong>{{ slot.booking!.vehiclePlate }}</strong>
+                </div>
+                <div class="action-info__row">
+                    <span>Since</span>
+                    <strong>{{ slot.booking!.startTime | date:'HH:mm' }}</strong>
+                </div>
+                <div class="action-info__row">
+                    <span>Rate</span>
+                    <strong>${{ slot.pricePerHour }}/hr</strong>
+                </div>
+            </div>
+            <button class="btn btn--danger btn--full" (click)="checkOut(slot.booking!.id)">
+                🚪 Check Out
+            </button>
+            }
+
+            <button class="btn btn--full" style="margin-top:8px" (click)="toggleMaintenance(slot.id)">
+                🔧 {{ slot.status === 'maintenance' ? 'Remove' : 'Set' }} Maintenance
+            </button>
+        </div>
+    </div>
+    }
+
 </div>
