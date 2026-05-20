@@ -159,5 +159,13 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
     const newStatus: SlotStatus = slot.status === 'maintenance' ? 'available' : 'maintenance';
     this.updateParkingSlot(slotId, { status: newStatus });
   }
+
+  searchSlot(plate: string): ParkingSlot | undefined {
+    const booking = this.bookings().find(
+      b => b.vehiclePlate.toLowerCase() === plate.toLowerCase() && b.status === 'active'
+    );
+    if (!booking) return undefined;
+    return this.parkingSlots().find(s => s.id === booking.slotId);
+  }
 }
  
