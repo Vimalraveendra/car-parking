@@ -26,6 +26,8 @@ export class ParkingGridComponent {
   actionSlot = signal<ParkingSlot | null>(null);
   selectSlotOption=signal({label:'All Sorts',value:'all'})
   selectSlotType=signal({label:'All Types',value:'all'})
+  searchPlate="";
+    foundSlot = signal<ParkingSlot | null>(null);
 
   setParkingFloor(floorNumber: number) { this.activeParkingFloor.set(floorNumber); }
 
@@ -84,5 +86,12 @@ export class ParkingGridComponent {
   toggleMaintenance(slotId: string): void {
     this.parkingService.toggleMaintenance(slotId);
     this.actionSlot.set(null);
+  }
+
+  onSearch(): void {
+    if (!this.searchPlate.trim()) { this.foundSlot.set(null); return; }
+    const slot = this.parkingService.searchSlot(this.searchPlate.trim());
+    this.foundSlot.set(slot ?? null);
+    if (slot) this.activeParkingFloor.set(slot.floor);
   }
 }
