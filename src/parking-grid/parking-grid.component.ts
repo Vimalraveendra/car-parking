@@ -5,11 +5,12 @@ import { ParkingService } from '../services/parking.service';
 import { ParkingSlot, SelectOption } from '../app/models/parking.model';
 import { BookingModalComponent } from '../app/booking-modal/booking-modal.component';
 import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-parking-grid',
   standalone:true,
-  imports: [CustomSelectComponent,BookingModalComponent,DatePipe],
+  imports: [CustomSelectComponent,BookingModalComponent,DatePipe,FormsModule],
   templateUrl: './parking-grid.component.html',
   styleUrl: './parking-grid.component.scss'
 })
