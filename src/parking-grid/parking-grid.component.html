@@ -5,7 +5,8 @@
             <p class="page-sub">Click a slot to book or manage</p>
         </div>
         <div class="toolbar">
-            <input class="search-input" type="text" placeholder="Search by plate..." />
+            <input class="search-input" type="text" placeholder="Search by plate..." [(ngModel)]="searchPlate"
+                (ngModelChange)="onSearch()" />
             <app-custom-select [options]="optionsData" [label]="selectSlotOption().label"
                 (selectedOption)="setSelectedSlot($event.option)" />
             <app-custom-select [options]="optionsType" [label]="selectSlotType().label"
@@ -43,6 +44,15 @@
         </button>
         }
     </div>
+
+    <!-- Highlighted slot from search -->
+    @if (foundSlot()) {
+    <div class="search-result">
+        <span>🔍 Found: <strong>{{ foundSlot()!.number }}</strong> —
+            {{ foundSlot()!.booking?.vehiclePlate }}</span>
+        <button class="btn btn--sm btn--danger" (click)="checkOut(foundSlot()!.booking!.id)">Check Out</button>
+    </div>
+    }
 
     <!-- Grid -->
     @for (floor of parkingFloors(); track floor.number) {
