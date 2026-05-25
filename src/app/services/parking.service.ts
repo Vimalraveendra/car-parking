@@ -171,6 +171,18 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
     return this.parkingSlots().find(s => s.id === booking.slotId);
   }
    
+   estimatedCost(booking: Booking): number {
+    const slot = this.parkingSlots().find(s => s.id === booking.slotId);
+    const hours = Math.max(1, Math.ceil((Date.now() - new Date(booking.startTime).getTime()) / 3600000));
+    return hours * (slot?.pricePerHour ?? 3);
+  }
+
+  cancelBooking(bookingId: string): void {
+    const booking = this.bookings().find(b => b.id === bookingId);
+    if (!booking) return;
+    this.bookings.update(bs => bs.map(b => b.id === bookingId ? { ...b, status: 'cancelled' } : b));
+    this.updateParkingSlot(booking.slotId, { status: 'available', booking: undefined });
+  }
 
 }
  
