@@ -86,6 +86,9 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
   });
 
   readonly activeBookings =computed(()=>this.bookings().filter(b => b.status === 'active'));
+  readonly completedBookings =computed(()=>this.bookings().filter(b => b.status === 'completed'));
+ readonly totalRevenue = computed(() => this.completedBookings().reduce((sum, b) => sum + (b.totalCost ?? 0), 0));
+   
    getIcon(type: string): string {
     const icons: Record<string, string> = {
       standard: '🚗', compact: '🚙', disabled: '♿', ev: '⚡'
@@ -167,5 +170,7 @@ stats.occupancyRate=Math.round((stats.occupied/ slots.length) * 100)
     if (!booking) return undefined;
     return this.parkingSlots().find(s => s.id === booking.slotId);
   }
+   
+
 }
  
