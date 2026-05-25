@@ -1,9 +1,9 @@
 import { Component, inject ,input, OnInit, output, signal} from '@angular/core';
-import { FormGroup,FormControl,Validators ,ReactiveFormsModule, MaxLengthValidator, FormControlName} from '@angular/forms';
-import { ParkingService } from '../../services/parking.service';
+import { FormGroup,FormControl,Validators ,ReactiveFormsModule} from '@angular/forms';
+import { ParkingService } from '../services/parking.service';
 import { Booking, ParkingSlot, SelectOption } from '../models/parking.model';
-import { CustomSelectComponent } from '../../shared/components/custom-select/custom-select.component';
-import { VEHICLE_TYPES } from '../../shared/data/parking-categories';
+import { CustomSelectComponent } from '../shared/components/custom-select/custom-select.component';
+import { VEHICLE_TYPES } from '../shared/data/parking-categories';
 
 @Component({
   selector: 'app-booking-modal',

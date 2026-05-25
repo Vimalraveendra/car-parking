@@ -1,4 +1,4 @@
-import { SelectOption } from "../../app/models/parking.model";
+import { SelectOption } from '../../models/parking.model';
 
 export const PARKING_SLOTS:SelectOption[]= [
   { id:101,value: 'all', label: 'All slots' },

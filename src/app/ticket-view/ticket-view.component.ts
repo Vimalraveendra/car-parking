@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ParkingService } from '../services/parking.service';
-import { Booking } from '../app/models/parking.model';
+import { Booking } from '../models/parking.model';
 
 @Component({
   selector: 'app-ticket-view',
