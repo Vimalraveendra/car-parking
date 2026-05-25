@@ -1,10 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { ParkingService } from '../services/parking.service';
 import { Booking } from '../models/parking.model';
+import { DatePipe,CurrencyPipe } from '@angular/common';
+import { ElapsedTimePipe } from '../pipes/elapsed-time.pipe';
 
 @Component({
   selector: 'app-ticket-view',
-  imports: [],
+  imports: [DatePipe,CurrencyPipe,ElapsedTimePipe],
   templateUrl: './ticket-view.component.html',
   styleUrl: './ticket-view.component.scss'
 })
@@ -24,10 +26,10 @@ export class TicketViewComponent {
     return this.parkingService.getIcon(type);
   }
 
-  checkout(bookingId: string) {
+  checkOut(bookingId: string) {
     this.parkingService.checkOut(bookingId);
   }
-  cancel(bookingId: string) {
+  cancelBooking(bookingId: string) {
     this.parkingService.cancelBooking(bookingId);
   }
 }

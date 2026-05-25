@@ -1,1 +1,28 @@
-<p>ticket-view works!</p>
+<div class="tickets-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Tickets</h1>
+            <p class="page-sub">All parking bookings and receipts</p>
+        </div>
+        <div class="tabs">
+            <button class="tab" [class.tab--active]="activeTab() === 'active'" (click)="activeTab.set('active')">
+                Active <span class="tab__badge">{{ activeBookings.length }}</span>
+            </button>
+            <button class="tab" [class.tab--active]="activeTab() === 'completed'" (click)="activeTab.set('completed')">
+                Completed <span class="tab__badge">{{ completedBookings.length }}</span>
+            </button>
+        </div>
+    </div>
+
+    @if (activeTab() === 'active') {
+    @if (activeBookings.length === 0) {
+    <div class="empty-state">
+        <div class="empty-state__icon">🎫</div>
+        <div class="empty-state__title">No active bookings</div>
+        <div class="empty-state__sub">Go to the parking grid to book a slot</div>
+    </div>
+    }
+
+    }
+
+</div>
