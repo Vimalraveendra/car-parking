@@ -2,8 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { CustomSelectComponent } from '../shared/components/custom-select/custom-select.component';
 import { PARKING_SLOTS, PARKING_TYPES } from '../shared/data/parking-categories';
 import { ParkingService } from '../services/parking.service';
-import { ParkingSlot, SelectOption } from '../app/models/parking.model';
-import { BookingModalComponent } from '../app/booking-modal/booking-modal.component';
+import { ParkingSlot, SelectOption } from '../models/parking.model';
+import { BookingModalComponent } from '../booking-modal/booking-modal.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

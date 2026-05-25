@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { ParkingService } from '../../services/parking.service';
+import { ParkingService } from '../services/parking.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { FloorOccupiedPipe } from '../../pipes/floor-occupied.pipe';
+import { FloorOccupiedPipe } from '../pipes/floor-occupied.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone:true,
-  imports: [CurrencyPipe,DatePipe,FloorOccupiedPipe],
+  imports: [CurrencyPipe,DatePipe,FloorOccupiedPipe,RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

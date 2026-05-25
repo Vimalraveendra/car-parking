@@ -1,5 +1,5 @@
 import { Component,input,signal,output } from '@angular/core';
-import { SelectOption } from '../../../app/models/parking.model';
+import { SelectOption } from '../../../models/parking.model';
 
 @Component({
   selector: 'app-custom-select',

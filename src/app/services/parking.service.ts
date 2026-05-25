@@ -1,5 +1,5 @@
 import { Injectable, signal ,computed} from '@angular/core';
-import { Booking, ParkingSlot, ParkingStats, SlotStatus ,Floor} from '../app/models/parking.model';
+import { Booking, ParkingSlot, ParkingStats, SlotStatus, Floor } from '../models/parking.model';
 
 @Injectable({
   providedIn: 'root'

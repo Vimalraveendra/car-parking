@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ParkingSlot } from '../app/models/parking.model';
+import { ParkingSlot } from '../models/parking.model';
 
 @Pipe({
   name: 'floorOccupied'
