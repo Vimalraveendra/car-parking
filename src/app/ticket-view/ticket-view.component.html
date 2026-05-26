@@ -6,16 +6,16 @@
         </div>
         <div class="tabs">
             <button class="tab" [class.tab--active]="activeTab() === 'active'" (click)="activeTab.set('active')">
-                Active <span class="tab__badge">{{ activeBookings.length }}</span>
+                Active <span class="tab__badge">{{ activeBookings().length }}</span>
             </button>
             <button class="tab" [class.tab--active]="activeTab() === 'completed'" (click)="activeTab.set('completed')">
-                Completed <span class="tab__badge">{{ completedBookings.length }}</span>
+                Completed <span class="tab__badge">{{ completedBookings().length }}</span>
             </button>
         </div>
     </div>
 
     @if (activeTab() === 'active') {
-    @if (activeBookings.length === 0) {
+    @if (activeBookings().length === 0) {
     <div class="empty-state">
         <div class="empty-state__icon">🎫</div>
         <div class="empty-state__title">No active bookings</div>
@@ -23,7 +23,7 @@
     </div>
     }
     <div class="tickets-grid">
-        @for (booking of activeBookings; track booking.id) {
+        @for (booking of activeBookings(); track booking.id) {
         <div class="ticket ticket--active">
             <div class="ticket__header">
                 <div class="ticket__slot">Slot {{ booking.slotNumber }}</div>
@@ -66,12 +66,36 @@
 
     }
     @if (activeTab() === 'completed') {
-    @if (completedBookings.length === 0) {
+    @if (completedBookings().length === 0) {
     <div class="empty-state">
         <div class="empty-state__icon">✅</div>
         <div class="empty-state__title">No completed bookings yet</div>
         <div class="empty-state__sub">Completed bookings will appear here</div>
     </div>
     }
+    <div class="receipts-list">
+        @for (booking of completedBookings(); track booking.id) {
+        <div class="receipt" (click)="selectedTicket.set(booking)">
+            <div class="receipt__left">
+                <div class="receipt__vehicle">{{ vehicleIcon(booking.vehicleType) }}</div>
+                <div>
+                    <div class="receipt__plate">{{ booking.vehiclePlate }}</div>
+                    <div class="receipt__owner">{{ booking.ownerName }}</div>
+                </div>
+            </div>
+            <div class="receipt__mid">
+                <div class="badge badge--accent">Slot {{ booking.slotNumber }}</div>
+                <div class="receipt__time">
+                    {{ booking.startTime | date:'dd MMM · HH:mm' }} →
+                    {{ booking.endTime | date:'HH:mm' }}
+                </div>
+            </div>
+            <div class="receipt__right">
+                <div class="receipt__cost">{{ booking.totalCost | currency }}</div>
+                <div class="receipt__duration">{{ booking.duration }}h</div>
+            </div>
+        </div>
+        }
+    </div>
     }
 </div>
