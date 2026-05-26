@@ -65,5 +65,13 @@
     </div>
 
     }
-
+    @if (activeTab() === 'completed') {
+    @if (completedBookings.length === 0) {
+    <div class="empty-state">
+        <div class="empty-state__icon">✅</div>
+        <div class="empty-state__title">No completed bookings yet</div>
+        <div class="empty-state__sub">Completed bookings will appear here</div>
+    </div>
+    }
+    }
 </div>
