@@ -22,6 +22,47 @@
         <div class="empty-state__sub">Go to the parking grid to book a slot</div>
     </div>
     }
+    <div class="tickets-grid">
+        @for (booking of activeBookings; track booking.id) {
+        <div class="ticket ticket--active">
+            <div class="ticket__header">
+                <div class="ticket__slot">Slot {{ booking.slotNumber }}</div>
+                <span class="badge badge--green">● Active</span>
+            </div>
+            <div class="ticket__plate">{{ booking.vehiclePlate }}</div>
+            <div class="ticket__details">
+                <div class="ticket__detail">
+                    <span>Owner</span>
+                    <strong>{{ booking.ownerName }}</strong>
+                </div>
+                <div class="ticket__detail">
+                    <span>Vehicle</span>
+                    <strong>{{ vehicleIcon(booking.vehicleType) }}</strong>
+                </div>
+                <div class="ticket__detail">
+                    <span>Check in</span>
+                    <strong>{{ booking.startTime | date:'dd MMM · HH:mm' }}</strong>
+                </div>
+                <div class="ticket__detail">
+                    <span>Duration</span>
+                    <strong>{{ booking.startTime | elapsedTime }}</strong>
+                </div>
+                <div class="ticket__detail">
+                    <span>Est. cost</span>
+                    <strong>{{ estimatedCost(booking) | currency }}</strong>
+                </div>
+            </div>
+            <div class="ticket__actions">
+                <button class="btn btn--danger btn--full" (click)="checkOut(booking.id)">
+                    🚪 Check Out
+                </button>
+                <button class="btn btn--sm" (click)="cancelBooking(booking.id)">
+                    Cancel
+                </button>
+            </div>
+        </div>
+        }
+    </div>
 
     }
 
