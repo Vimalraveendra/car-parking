@@ -72,3 +72,56 @@
     font-size: 13px; 
     color: var(--text-secondary); 
 }
+ .tickets-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 14px; 
+}
+ .ticket {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    }
+.ticket--active { 
+    border-color: rgba(34,197,94,0.3); 
+}
+.ticket__header {
+     display: flex; 
+     align-items: center; 
+     justify-content: space-between; 
+}
+.ticket__slot { 
+    font-size: 13px; 
+    font-weight: 600; 
+    color: var(--accent); 
+}
+.ticket__plate { 
+    font-size: 22px; 
+    font-weight: 700; 
+    letter-spacing: 0.05em; 
+}
+.ticket__details { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+}
+.ticket__detail { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 12px; 
+    color: var(--text-secondary); 
+}
+.ticket__detail strong { 
+    color: var(--text-primary); 
+    font-weight: 500; 
+}
+.ticket__actions { 
+    display: flex; 
+    flex-direction: column;
+     gap: 6px; 
+     margin-top: 4px; 
+    }
