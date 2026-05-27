@@ -3,10 +3,11 @@ import { ParkingService } from '../services/parking.service';
 import { Booking } from '../models/parking.model';
 import { DatePipe,CurrencyPipe } from '@angular/common';
 import { ElapsedTimePipe } from '../pipes/elapsed-time.pipe';
+import { ReceiptModalComponent } from "./receipt-modal/receipt-modal.component";
 
 @Component({
   selector: 'app-ticket-view',
-  imports: [DatePipe,CurrencyPipe,ElapsedTimePipe],
+  imports: [DatePipe, CurrencyPipe, ElapsedTimePipe, ReceiptModalComponent],
   templateUrl: './ticket-view.component.html',
   styleUrl: './ticket-view.component.scss'
 })
@@ -31,5 +32,8 @@ export class TicketViewComponent {
   }
   cancelBooking(bookingId: string) {
     this.parkingService.cancelBooking(bookingId);
+  }
+  closeModalReceipt(){
+    this.selectedTicket.set(null);
   }
 }
