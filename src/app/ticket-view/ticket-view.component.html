@@ -97,5 +97,12 @@
         </div>
         }
     </div>
+
+    @if (completedBookings().length > 0) {
+    <div class="revenue-summary">
+        <span>Total revenue</span>
+        <strong>{{ totalRevenue() | currency }}</strong>
+    </div>
+    }
     }
 </div>
