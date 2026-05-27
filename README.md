@@ -1,39 +1,43 @@
-# CarParking
+# 🚗 Car Parking Management System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+A web-based Car Parking Management System built with Angular that allows users to view parking slots, book parking, and view parking receipts.
 
-## Development server
+### 🧰 Requirements
 
-To start a local development server, run:
+- **Node.js** v18+ 
+---
+##  🚀 Getting Started
+1. Clone the repository
+2. npm install
+3. Run the application
 
-```bash
-ng serve
-```
+The app will be available at **http://localhost:4200**.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📌 Features
 
-## Code scaffolding
+- View available and occupied parking slots
+- Book and release parking slots
+- View completed parking sessions
+- Receipt modal for completed tickets
+- Real-time slot status updates 
+- Responsive UI for desktop and mobile
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+##  🧱 Tech Stack
 
-```bash
-ng generate component component-name
-```
+- Frontend: Angular
+- Language: TypeScript
+- State Management: Signals 
+- UI Styling: SCSS 
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📦 Core Functionality Flow
 
-```bash
-ng generate --help
-```
+- User selects a parking slot
+- Slot is marked as active/occupied
+- On completion, slot moves to "completed"
+- Clicking completed slot opens receipt modal
+- User can view and close receipt
 
-## Building
+##  📄 License
 
-To build the project run:
+This project is for learning/demo purposes.
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-# car-parking
