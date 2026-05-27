@@ -1,1 +1,43 @@
-<p>receipt-modal works!</p>
+<!-- Ticket detail modal -->
+<div class="modal-backdrop" (click)="closeModal()">
+    <div class="receipt-modal" (click)="$event.stopPropagation()">
+        <div class="receipt-modal__header">
+            <div class="receipt-modal__title">Parking Receipt</div>
+            <button (click)="closeModal()">✕</button>
+        </div>
+        <div class="receipt-modal__body">
+            <div class="receipt-modal__logo">🅿 ParkSmart</div>
+            <div class="receipt-modal__plate">{{ selectedTicket()!.vehiclePlate }}</div>
+            <div class="receipt-modal__rows">
+                <div class="receipt-modal__row">
+                    <span>Booking ID</span><span>{{ selectedTicket()!.id }}</span>
+                </div>
+                <div class="receipt-modal__row">
+                    <span>Slot</span><span>{{ selectedTicket()!.slotNumber }}</span>
+                </div>
+                <div class="receipt-modal__row">
+                    <span>Owner</span><span>{{ selectedTicket()!.ownerName }}</span>
+                </div>
+                <div class="receipt-modal__row">
+                    <span>Check in</span>
+                    <span>{{ selectedTicket()!.startTime | date:'dd MMM yyyy · HH:mm' }}</span>
+                </div>
+                <div class="receipt-modal__row">
+                    <span>Check out</span>
+                    <span>{{ selectedTicket()!.endTime | date:'dd MMM yyyy · HH:mm' }}</span>
+                </div>
+                <div class="receipt-modal__row">
+                    <span>Duration</span><span>{{ selectedTicket()!.duration }} hour(s)</span>
+                </div>
+                <div class="receipt-modal__divider"></div>
+                <div class="receipt-modal__row receipt-modal__row--total">
+                    <span>Total charged</span>
+                    <span>{{ selectedTicket()!.totalCost | currency }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="receipt-modal__footer">
+            <button class="btn btn--full" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</div>

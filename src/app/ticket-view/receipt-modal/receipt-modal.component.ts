@@ -1,14 +1,19 @@
-import { Component, input } from '@angular/core';
+import { Component, input,output } from '@angular/core';
 import { Booking } from '../../models/parking.model';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-receipt-modal',
-  imports: [],
+  imports: [CurrencyPipe, DatePipe],
   templateUrl: './receipt-modal.component.html',
   styleUrl: './receipt-modal.component.scss'
 })
 export class ReceiptModalComponent {
-  activeTab=input<'active' | 'completed'|null>(null);
   selectedTicket=input<Booking | null>(null);
+  close=output<void>();
+
+  closeModal(){
+    this.close.emit();
+  }
 
 }
