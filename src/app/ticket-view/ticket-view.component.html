@@ -33,7 +33,7 @@
             <div class="ticket__details">
                 <div class="ticket__detail">
                     <span>Owner</span>
-                    <strong>{{ booking.ownerName }}</strong>
+                    <strong>{{ booking.ownerName.toUpperCase()}}</strong>
                 </div>
                 <div class="ticket__detail">
                     <span>Vehicle</span>
@@ -80,7 +80,7 @@
                 <div class="receipt__vehicle">{{ vehicleIcon(booking.vehicleType) }}</div>
                 <div>
                     <div class="receipt__plate">{{ booking.vehiclePlate }}</div>
-                    <div class="receipt__owner">{{ booking.ownerName }}</div>
+                    <div class="receipt__owner">{{ booking.ownerName .toUpperCase()}}</div>
                 </div>
             </div>
             <div class="receipt__mid">
@@ -106,3 +106,6 @@
     }
     }
 </div>
+@if(selectedTicket() && activeTab()==='completed'){
+<app-receipt-modal [selectedTicket]="selectedTicket()" (close)="closeModalReceipt()" />
+}
