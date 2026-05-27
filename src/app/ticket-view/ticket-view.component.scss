@@ -183,3 +183,17 @@
     font-size: 11px; 
     color: var(--text-secondary); 
 }
+ .revenue-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+}
+.revenue-summary strong { 
+    font-size: 18px; 
+    color: var(--accent); 
+}
