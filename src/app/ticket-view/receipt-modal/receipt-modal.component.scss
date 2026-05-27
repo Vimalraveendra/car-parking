@@ -1,0 +1,89 @@
+  .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+    }
+.receipt-modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    width: 340px;
+    box-shadow: var(--shadow-lg);
+ }
+ .receipt-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+}
+.receipt-modal__header button { 
+    background: none; 
+    border: none; 
+    color: var(--text-secondary); 
+    cursor: pointer; 
+    font-size: 18px; 
+}
+.receipt-modal__header button:hover { 
+    color: var(--text-primary); 
+}
+.receipt-modal__title {
+     font-size: 14px; 
+     font-weight: 600; 
+    }
+.receipt-modal__body { 
+    padding: 20px; 
+    text-align: center; 
+}
+.receipt-modal__logo { 
+    font-size: 16px; 
+    font-weight: 700; 
+    margin-bottom: 12px; 
+    color: var(--accent); 
+}
+.receipt-modal__plate { 
+    font-size: 28px; 
+    font-weight: 700; 
+    letter-spacing: 0.1em; 
+    margin-bottom: 20px; 
+}
+.receipt-modal__rows { 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+}
+.receipt-modal__row { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 13px; 
+    color: var(--text-secondary); 
+}
+.receipt-modal__row span:last-child { 
+    color: var(--text-primary); 
+    font-weight: 500; 
+}
+.receipt-modal__divider { 
+    height: 1px; 
+    background: var(--border); 
+    margin: 8px 0; 
+}
+.receipt-modal__row--total { 
+    font-size: 15px; 
+    font-weight: 600; 
+}
+.receipt-modal__row--total span { 
+    color: var(--text-primary) !important; 
+}
+.receipt-modal__row--total span:last-child {
+     color: var(--green) !important; 
+    }
+.receipt-modal__footer { 
+    padding: 16px 20px; 
+    border-top: 1px solid var(--border); 
+}
