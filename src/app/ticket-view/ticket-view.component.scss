@@ -125,3 +125,61 @@
      gap: 6px; 
      margin-top: 4px; 
     }
+.receipts-list { 
+    display: flex; 
+    flex-direction: 
+    column; gap: 8px; 
+}
+.receipt {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+.receipt:hover { 
+    border-color: var(--border-hover); 
+}
+.receipt__left { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    flex: 1; 
+}
+.receipt__vehicle { 
+    font-size: 24px; 
+}
+.receipt__plate { 
+    font-size: 14px; 
+    font-weight: 600; 
+}
+.receipt__owner { 
+    font-size: 12px; 
+    color: var(--text-secondary); 
+}
+.receipt__mid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 4px; 
+    align-items: center; 
+}
+.receipt__time { 
+    font-size: 11px; 
+    color: var(--text-hint); 
+}
+.receipt__right { 
+    text-align: right; 
+}
+.receipt__cost { 
+    font-size: 16px; 
+    font-weight: 600; 
+    color: var(--green); 
+}
+.receipt__duration { 
+    font-size: 11px; 
+    color: var(--text-secondary); 
+}
